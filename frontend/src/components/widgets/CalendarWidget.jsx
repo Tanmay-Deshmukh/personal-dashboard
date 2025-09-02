@@ -9,7 +9,8 @@ const CalendarWidget = () => {
   useEffect(() => {
     const fetchCalendarEvents = async () => {
       try {
-        const response = await fetch('/api/calendar');
+        const API_URL = process.env.VITE_API_URL || '';
+        const response = await fetch(`${API_URL}/api/calendar`);
         if (!response.ok) {
           throw new Error('Calendar data fetch failed');
         }

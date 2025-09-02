@@ -18,7 +18,8 @@ const Dashboard = () => {
   
   const handleDemoLogin = async () => {
     try {
-      const response = await fetch('/api/demo-login', { method: 'POST' });
+      const API_URL = process.env.VITE_API_URL || '';
+      const response = await fetch(`${API_URL}/api/demo-login`, { method: 'POST' });
       const demoData = await response.json();
       // You can use this data to populate widgets with demo content
       setIsDemo(true);

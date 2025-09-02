@@ -9,7 +9,8 @@ const WeatherWidget = ({ location = 'auto' }) => {
   useEffect(() => {
     const fetchWeather = async () => {
       try {
-        const response = await fetch(`/api/weather?location=${location}`);
+        const API_URL = process.env.VITE_API_URL || '';
+        const response = await fetch(`${API_URL}/api/weather?location=${location}`);
         if (!response.ok) {
           throw new Error('Weather data fetch failed');
         }

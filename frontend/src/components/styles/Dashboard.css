@@ -1,0 +1,55 @@
+/* client/src/styles/Dashboard.css */
+.dashboard {
+  padding: 1rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.demo-btn {
+  padding: 0.5rem 1rem;
+  background: #6c757d;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.demo-btn:hover {
+  background: #5a6268;
+}
+
+.widgets-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+.widget-container {
+  /* Base widget container styles */
+}
+
+.widget-container.large {
+  grid-column: span 2;
+}
+
+@media (max-width: 768px) {
+  .widget-container.large {
+    grid-column: span 1;
+  }
+  
+  .dashboard-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .demo-btn {
+    margin-top: 1rem;
+  }
+}

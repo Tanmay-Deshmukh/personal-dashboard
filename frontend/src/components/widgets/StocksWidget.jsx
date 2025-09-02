@@ -9,7 +9,8 @@ const StocksWidget = ({ symbols = 'AAPL,MSFT,GOOGL' }) => {
   useEffect(() => {
     const fetchStocks = async () => {
       try {
-        const response = await fetch(`/api/stocks?symbols=${symbols}`);
+        const API_URL = process.env.VITE_API_URL || '';
+        const response = await fetch(`${API_URL}/api/stocks?symbols=${symbols}`);
         if (!response.ok) {
           throw new Error('Stocks data fetch failed');
         }

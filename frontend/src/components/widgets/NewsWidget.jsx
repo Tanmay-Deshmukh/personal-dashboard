@@ -9,7 +9,8 @@ const NewsWidget = ({ category = 'technology', count = 5 }) => {
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        const response = await fetch(`/api/news?category=${category}&count=${count}`);
+        const API_URL = process.env.VITE_API_URL || '';
+        const response = await fetch(`${API_URL}/api/news?category=${category}&count=${count}`);
         if (!response.ok) {
           throw new Error('News data fetch failed');
         }

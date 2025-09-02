@@ -4,7 +4,7 @@ import NewsWidget from './widgets/NewsWidget';
 import FocusWidget from './widgets/FocusWidget';
 import StocksWidget from './widgets/StocksWidget';
 import CalendarWidget from './widgets/CalendarWidget';
-import '../styles/Dashboard.css';
+import './styles/Dashboard.css';
 import { demoLogin } from './utils/login';
 
 const Dashboard = () => {

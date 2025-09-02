@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import '../../styles/Widget.css';
+import '../styles/Widget.css';
+import { fetchNews } from '../utils/news';
 
 const NewsWidget = ({ category = 'technology', count = 5 }) => {
   const [articles, setArticles] = useState([]);
@@ -7,15 +8,10 @@ const NewsWidget = ({ category = 'technology', count = 5 }) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchNews = async () => {
+    const fetchNewsArticles = async () => {
       try {
-        const API_URL = process.env.VITE_API_URL || '';
-        const response = await fetch(`${API_URL}/api/news?category=${category}&count=${count}`);
-        if (!response.ok) {
-          throw new Error('News data fetch failed');
-        }
-        const data = await response.json();
-        setArticles(data.articles || []);
+        const data = await fetchNews(category, count);
+        setArticles(data || []);
       } catch (err) {
         console.error('Error fetching news:', err);
         setError('Failed to load news');
@@ -39,7 +35,7 @@ const NewsWidget = ({ category = 'technology', count = 5 }) => {
       }
     };
 
-    fetchNews();
+    fetchNewsArticles();
   }, [category, count]);
 
   if (loading) return <div className="widget loading">Loading news...</div>;

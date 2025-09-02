@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import '../../styles/Widget.css';
+import '../styles/Widget.css';
+import { fetchWeather } from '../utils/weather';
 
 const WeatherWidget = ({ location = 'auto' }) => {
   const [weather, setWeather] = useState(null);
@@ -7,14 +8,9 @@ const WeatherWidget = ({ location = 'auto' }) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchWeather = async () => {
+    const fetchWeatherData = async () => {
       try {
-        const API_URL = process.env.VITE_API_URL || '';
-        const response = await fetch(`${API_URL}/api/weather?location=${location}`);
-        if (!response.ok) {
-          throw new Error('Weather data fetch failed');
-        }
-        const data = await response.json();
+        const data = await fetchWeather(location);
         setWeather(data);
       } catch (err) {
         console.error('Error fetching weather:', err);
@@ -31,7 +27,7 @@ const WeatherWidget = ({ location = 'auto' }) => {
       }
     };
 
-    fetchWeather();
+    fetchWeatherData();
   }, [location]);
 
   if (loading) return <div className="widget loading">Loading weather...</div>;

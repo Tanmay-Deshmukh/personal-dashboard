@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import '../../styles/Widget.css';
+import '../styles/Widget.css';
+import { fetchStocks } from '../utils/stocks';
 
 const StocksWidget = ({ symbols = 'AAPL,MSFT,GOOGL' }) => {
   const [stocks, setStocks] = useState([]);
@@ -9,12 +10,7 @@ const StocksWidget = ({ symbols = 'AAPL,MSFT,GOOGL' }) => {
   useEffect(() => {
     const fetchStocks = async () => {
       try {
-        const API_URL = process.env.VITE_API_URL || '';
-        const response = await fetch(`${API_URL}/api/stocks?symbols=${symbols}`);
-        if (!response.ok) {
-          throw new Error('Stocks data fetch failed');
-        }
-        const data = await response.json();
+        const data = await fetchStocks(symbols);
         setStocks(data);
       } catch (err) {
         console.error('Error fetching stocks:', err);

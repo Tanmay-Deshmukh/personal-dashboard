@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import '../../styles/Widget.css';
+import '../styles/Widget.css';
 
 const FocusWidget = () => {
   const [timeLeft, setTimeLeft] = useState(25 * 60);

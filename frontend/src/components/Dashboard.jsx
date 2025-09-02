@@ -5,8 +5,10 @@ import FocusWidget from './widgets/FocusWidget';
 import StocksWidget from './widgets/StocksWidget';
 import CalendarWidget from './widgets/CalendarWidget';
 import '../styles/Dashboard.css';
+import { demoLogin } from './utils/login';
 
 const Dashboard = () => {
+  const [isDemo, setIsDemo] = useState(false);
   const [widgetLayout, setWidgetLayout] = useState({
     weather: true,
     news: true,
@@ -14,11 +16,27 @@ const Dashboard = () => {
     stocks: true,
     calendar: true
   });
+  
+  const handleDemoLogin = async () => {
+    try {
+      const demoData = await demoLogin();
+      // You can use this data to populate widgets with demo content
+      setIsDemo(true);
+      console.log('Demo login successful', demoData);
+    } catch (error) {
+      console.error('Demo login failed:', error);
+    }
+  };
 
   return (
     <div className="dashboard">
       <header className="dashboard-header">
         <h1>Personal Dashboard</h1>
+        {!isDemo && (
+          <button onClick={handleDemoLogin} className="demo-btn">
+            View Demo
+          </button>
+        )}
       </header>
       
       <div className="widgets-grid">

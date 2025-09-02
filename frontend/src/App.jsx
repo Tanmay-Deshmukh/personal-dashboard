@@ -1,10 +1,13 @@
-function App() {
+import React from 'react';
+import Dashboard from './components/Dashboard';
+import './styles/App.css';
 
+function App() {
   return (
-    <>
-      <p>{"app goes here :)"}</p>
-    </>
-  )
+    <div className="App">
+      <Dashboard />
+    </div>
+  );
 }
 
-export default App
+export default App;

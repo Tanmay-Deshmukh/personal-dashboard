@@ -8,7 +8,7 @@ const StocksWidget = ({ symbols = 'AAPL,MSFT,GOOGL' }) => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchStocks = async () => {
+    const fetchStocksData = async () => {
       try {
         const data = await fetchStocks(symbols);
         setStocks(data);
@@ -26,7 +26,7 @@ const StocksWidget = ({ symbols = 'AAPL,MSFT,GOOGL' }) => {
       }
     };
 
-    fetchStocks();
+    fetchStocksData();
   }, [symbols]);
 
   if (loading) return <div className="widget loading">Loading stocks...</div>;

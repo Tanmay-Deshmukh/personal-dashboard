@@ -9,9 +9,11 @@ export const fetchStocks = async (symbols) => {
         fetch(`${config.alphaVantage.baseUrl}?function=GLOBAL_QUOTE&symbol=${symbol}&apikey=${apiKey}`)
       )
     );
-    const stockData = responses.map((response, index) => {
+    const responseJsons = await Promise.all(responses.map(res => res.json()));
+    console.log(responseJsons);
+    const stockData = responseJsons.map((x, index) => {
       const symbol = symbols.split(',')[index];
-      const data = response.data['Global Quote'];
+      const data = x['Global Quote'];
       
       if (!data) {
         return {

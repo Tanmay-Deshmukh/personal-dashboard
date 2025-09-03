@@ -42,9 +42,9 @@ jobs:
         working-directory: ./frontend
         env:
           # Pass secrets as environment variables to the build process
-          OPENWEATHER_API_KEY: ${{ secrets.OPENWEATHER_API_KEY }}
-          NEWSAPI_API_KEY: ${{ secrets.NEWSAPI_API_KEY }}
-          ALPHAVANTAGE_API_KEY: ${{ secrets.ALPHAVANTAGE_API_KEY }}
+          VITE_OPENWEATHER_API_KEY: ${{ secrets.VITE_OPENWEATHER_API_KEY }}
+          VITE_NEWSAPI_API_KEY: ${{ secrets.VITE_NEWSAPI_API_KEY }}
+          VITE_ALPHAVANTAGE_API_KEY: ${{ secrets.VITE_ALPHAVANTAGE_API_KEY }}
 
       - name: Setup Pages
         uses: actions/configure-pages@v4

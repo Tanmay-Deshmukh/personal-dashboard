@@ -32,11 +32,11 @@ const Dashboard = () => {
     <div className="dashboard">
       <header className="dashboard-header">
         <h1>Personal Dashboard</h1>
-        {!isDemo && (
+        {/* {!isDemo && (
           <button onClick={handleDemoLogin} className="demo-btn">
             View Demo
           </button>
-        )}
+        )} */}
       </header>
       
       <div className="widgets-grid">

@@ -43,7 +43,7 @@ const WeatherWidget = ({ location = 'auto' }) => {
         />
         <span className="temperature">{Math.round(weather.main.temp)}°F</span>
       </div>
-      <p>{weather.weather[0].description}</p>
+      <p>{weather.weather[0].description[0].toUpperCase() + weather.weather[0].description.slice(1)}.</p>
       <div className="weather-details">
         <span>Humidity: {weather.main.humidity}%</span>
         <span>Wind: {Math.round(weather.wind.speed)} mph</span>

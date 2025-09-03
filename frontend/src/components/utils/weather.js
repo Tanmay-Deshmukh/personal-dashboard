@@ -5,15 +5,19 @@ export const fetchWeather = async (location) => {
     const apiKey = config.openWeather.apiKey;
     // First, get coordinates for the location (in case it's a city name)
     const geoResponse = await fetch(
-      `${config.openWeather.baseUrl}/weather?q=${location}&units=imperial&appid=${apiKey}`
+      `${config.openWeather.baseUrl}/geo/1.0/direct?q=${location}&appid=${apiKey}`
     );
-    if (!geoResponse.data || geoResponse.data.length === 0) {
+    const geoData = await geoResponse.json();
+    if (!geoData || geoData.length === 0) {
+      console.error('Geocoding API returned no data for location:', location);
+      console.log('Response:', geoResponse);
+      console.log('Data:', geoData);
       throw new Error('Location not found');
     }
-    const { lat, lon } = geoResponse.data[0];
+    const { lat, lon } = geoData[0];
     // Then get weather data using coordinates
     const weatherResponse = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=imperial`
+      `${config.openWeather.baseUrl}/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=imperial`
     );
 
     if (!weatherResponse.ok) {

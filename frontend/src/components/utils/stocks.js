@@ -1,10 +1,12 @@
+import { config } from './config';
+
 export const fetchStocks = async (symbols) => {
   try {
-    const apiKey = import.meta.env.STOCKS_API_KEY;
+    const apiKey = config.alphaVantage.apiKey;
     // Using Alpha Vantage API (free tier has rate limits)
     const responses = await Promise.all(
       symbols.split(',').map(symbol => 
-        fetch(`https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${symbol}&apikey=${apiKey}`)
+        fetch(`${config.alphaVantage.baseUrl}?function=GLOBAL_QUOTE&symbol=${symbol}&apikey=${apiKey}`)
       )
     );
     const stockData = responses.map((response, index) => {

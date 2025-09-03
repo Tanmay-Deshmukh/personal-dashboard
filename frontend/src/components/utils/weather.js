@@ -1,9 +1,11 @@
+import { config } from './config';
+
 export const fetchWeather = async (location) => {
   try {
-    const apiKey = import.meta.env.OPENWEATHER_API_KEY;
+    const apiKey = config.openWeather.apiKey;
     // First, get coordinates for the location (in case it's a city name)
     const geoResponse = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=imperial&appid=${apiKey}`
+      `${config.openWeather.baseUrl}/weather?q=${location}&units=imperial&appid=${apiKey}`
     );
     if (!geoResponse.data || geoResponse.data.length === 0) {
       throw new Error('Location not found');
